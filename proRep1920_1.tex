@@ -5,6 +5,8 @@
 \usepackage{setspace}
 \singlespacing
 
+\usepackage{graphicx}
+\graphicspath{{/home/adzlan/Documents/proRep1920_1/figure/}}
 \usepackage[sumlimits,]{amsmath}
 
 \usepackage[]{SIunits}
@@ -76,22 +78,35 @@ We studied the questions raised in \S\ref{outline} through the use of numerical 
 
 We collect field data such as velocity, pressure and vorticity from the numerical results to visually grasp key points in the temporal evolution of the fluid-structure interaction between the cruciform and the stream. This lays the qualitative base to our description and understanding of the flow field. We also collect one-dimensional time series data of the lift coefficient and also mean turbulent velocity fluctuations at certain locations downstream the cylinder for quantitive analysis of the vibration response.
 
-To generalise the cruciform setup of circular cylinder-strip plate as a method for vibration response control, we varied the tilt angle of the plate, relativet to the axis of the cylinder, in from \rze{} to \rfo{} in increments of \ron{}. This allows us to gauge how sensitive the vortical structures driving the vibration are with respect to structural symmetry.
+To generalise the cruciform setup of circular cylinder-strip plate as a method for vibration response control, we varied the tilt angle of the plate, relative to the axis of the cylinder, in from \rze{} to \rfo{} in increments of \ron{}. This allows us to gauge how sensitive the vortical structures driving the vibration are with respect to structural symmetry.
 
 \section{Data analysis} \label{analysis}
+
+\subsection{Methods of analysis}
+
 The one-dimensional time series data, which is oscillatory in nature, are analysed for their root-mean-square amplitude values and dominant frequency content to reveal amplitude and frequency response of the system with respect to the reduced velocity \ured{}. The dominant frequency of the system, is generally determined via fast Fourier transform (FFT) for the cylinder displacement time series (or ``signal'' for short). The root-mean-square (RMS) amplitude for the lift signal however, is computed after the signal is decomposed using ensemble empirical mode decomposition (EEMD) \parencite{Huang1998,Wu2008}, and its prevalent frequency, after computing the Hilbert spectrogram of the decomposed lift signal. We discuss why in the following paragraph.
 
 In our past leg of study which focussed on the \rfo{} case, we observed that the lift signal behaves less sinusoidal with the advent of streamwise vortex and streamwise vortex-induced vibration (SVIV). In fact, following EEMD, we identified two components of that decomposition (also known as intrinsic mode functions or IMF) with the highest RMS amplitude, and computed their Hilbert spectrograms. What results is the discovery that these two IMFs--two with the largest RMS amplitudes--oscillate at a mean frequency close to the shedding frequency of Karman vortex (or simply the Karman frequency) while the other, oscillates close to the natural frequency of the system. Our choice of using EEMD to compute the Hilbert spectrogram allows us to gain a better understanding not only of the pricipal constituents of lift signal frequency, but also its temporal evolution and more generally, the degree of dispersion of the instantaneous frequencies from the mean. 
 
-We identified the cause of this as the result of both the Karman and streamwise vortices leaving their temporal evolution footprint on the lift signal. The difference in the base frequency and amplitude between the two warps the lift signal away from its previous form in the Karman vortex-induced vibration (KVIV) regime, which is closer to a sine wave. The lift signal in the SVIV regime is exhibits a highly composite form, where one wave is superpositioned on another. In the \rfo{} case, this composite form of the lift signal starts to be apparent when \ured{}\es{}\urse{}.
-
-However, we managed to recover components of the lift signal that are truer to the sinusoidal form previously observed in the KVIV regime once we decompose the lift signal into components called intrinsic mode functions \parencite{Huang1998} and \parencite{Wu2008}. Computing the Hilbert spectrogram of the two dominant components of the lift signal shows that one has a mean instantaneous frequency close to the system natural frequency, while the other has a mean instantaneous frequency close to the shedding frequency of Karman vortex from a static, isolated, smooth circular cylinder.
-
-In this composite lift regime of SVIV, we observed that the contribution from the two components to the total lift is approximately the same between \ured{}\es{}\urei{} to \urte{}. However, when \ured{}\es{}\urel{} to \urtt{}, the contribution to the total lift root-mean-square amplitude from the component whose frequency is close to the Karman frequency is consistently about 2 times bigger than the contribution from the component whose frequency is close to the natural frequency of the system.
-
-\newpage
+\subsection{Generalising the pure cruciform configuration}
 
 \section{Chapters completed and progress to date}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{amplitudeResponse.png}
+  \caption{Amplitude response for the \rze{} case.}
+  \label{fig:ampresp}
+\end{figure}
+
+In the above figure, we see that the amplitude response of the \rze{} case is vastly different from the \rfo{} case.
+\newpage
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{liftForceRMS.png}
+  \caption{Lift force variation with respect to \ured{} and $\theta_{\text{plate}}$.}
+  \label{fig:liftevo}
+\end{figure}
 
 \newpage
 
