@@ -1,0 +1,102 @@
+\documentclass[a4paper]{article}
+
+\usepackage[a4paper]{geometry}
+
+\usepackage{setspace}
+\singlespacing
+
+\usepackage[sumlimits,]{amsmath}
+
+\usepackage[]{SIunits}
+
+\usepackage[
+  backend=biber,
+  style=authoryear-icomp
+]{biblatex}
+
+\addbibresource{literature.bib}
+
+\begin{document}
+
+%The macros for freestream velocities
+\newcommand{\uon}{\unit{0.1}{\metre\per\second}}
+\newcommand{\utw}{\unit{0.2}{\metre\per\second}}
+\newcommand{\uth}{\unit{0.3}{\metre\per\second}}
+\newcommand{\ufo}{\unit{0.4}{\metre\per\second}}
+\newcommand{\ufi}{\unit{0.5}{\metre\per\second}}
+\newcommand{\usi}{\unit{0.6}{\metre\per\second}}
+\newcommand{\use}{\unit{0.7}{\metre\per\second}}
+\newcommand{\uei}{\unit{0.8}{\metre\per\second}}
+\newcommand{\uni}{\unit{0.9}{\metre\per\second}}
+\newcommand{\ute}{\unit{1.0}{\metre\per\second}}
+\newcommand{\uel}{\unit{1.1}{\metre\per\second}}
+\newcommand{\utv}{\unit{1.2}{\metre\per\second}}
+\newcommand{\utt}{\unit{1.3}{\metre\per\second}}
+
+%The macros for plate tilt angle
+\newcommand{\ptlt}{$\theta_{plate}$}
+\newcommand{\rze}{\unit{0}{\radian}}
+\newcommand{\ron}{\unit{\pi/8}{\radian}}
+\newcommand{\rtw}{\unit{\pi/4}{\radian}}
+\newcommand{\rth}{\unit{3\pi/8}{\radian}}
+\newcommand{\rfo}{\unit{\pi/2}{\radian}}
+
+%The macros for commonly used symbols
+\newcommand{\ypl}{$y^{+}$} %yPlus
+\newcommand{\ured}{$U^{*}$} %Reduced velocity
+
+\newcommand{\uron}{$2.3$}
+\newcommand{\urtw}{$4.5$}
+\newcommand{\urth}{$6.8$}
+\newcommand{\urfo}{$9.1$}
+\newcommand{\urfi}{$11.4$}
+\newcommand{\ursi}{$13.6$}
+\newcommand{\urse}{$15.9$}
+\newcommand{\urei}{$18.2$}
+\newcommand{\urni}{$20.5$}
+\newcommand{\urte}{$22.7$}
+\newcommand{\urel}{$25.0$}
+\newcommand{\urtv}{$27.3$}
+\newcommand{\urtt}{$29.5$}
+
+\newcommand{\es}{$=$}
+
+\section{Title of thesis}
+Micro-watt energy harvesting by exploiting the flow around a circular cylinder-strip plate cruciform
+
+\section{Project outline} \label{outline}
+This work seeks to exploit the flow-induced vibration (FIV) due to vortex shedding around a circular cylinder--strip plate cruciform to generate power. The circular cylinder is elastically mounted, and the periodic shedding of the vortices create the alternate lift that drives the vibration of the cylinder.
+
+In a pure cruciform configuration between the cylinder and plate, i.e. both aretilted \rfo{} to each other, a vibration response is elicited from the elastically mounted cylinder that exceeds the maximum vibration amplitude of an isolated cylinder, under similar flow conditions. This is desirable from an energy harvesting perspective since a higher vibration amplitude translates into higher harnessable energy from the fluid stream.
+
+What sets off the high amplitude vibration in the cruciform setup? What is the limit for improvement for the amplitude response? How can we generalise the cruciform setup as a method for flow and vibration control? These are the questions that we seek to answer in this study.
+
+\section{Data collection} \label{collection}
+We studied the questions raised in \S\ref{outline} through the use of numerical methods to solve the continuity and Navier-Stokes equations around the problem geometery previously defined. We opted for the open source C++ library OpenFOAM due to its portability in case file management (the whole case are just text files placed in a directory tree that obeys a simple convention) and extensibility in terms of the solution of the governing equations, dynamic mesh handling and workflow customisation and automation (which is possible simply by using shell scripts or by using Python, through PyFOAM).
+
+We collect field data such as velocity, pressure and vorticity from the numerical results to visually grasp key points in the temporal evolution of the fluid-structure interaction between the cruciform and the stream. This lays the qualitative base to our description and understanding of the flow field. We also collect one-dimensional time series data of the lift coefficient and also mean turbulent velocity fluctuations at certain locations downstream the cylinder for quantitive analysis of the vibration response.
+
+To generalise the cruciform setup of circular cylinder-strip plate as a method for vibration response control, we varied the tilt angle of the plate, relativet to the axis of the cylinder, in from \rze{} to \rfo{} in increments of \ron{}. This allows us to gauge how sensitive the vortical structures driving the vibration are with respect to structural symmetry.
+
+\section{Data analysis} \label{analysis}
+The one-dimensional time series data, which is oscillatory in nature, are analysed for their root-mean-square amplitude values and dominant frequency content to reveal amplitude and frequency response of the system with respect to the reduced velocity \ured{}. The dominant frequency of the system, is generally determined via fast Fourier transform (FFT) for the cylinder displacement time series (or ``signal'' for short). The root-mean-square (RMS) amplitude for the lift signal however, is computed after the signal is decomposed using ensemble empirical mode decomposition (EEMD) \parencite{Huang1998,Wu2008}, and its prevalent frequency, after computing the Hilbert spectrogram of the decomposed lift signal. We discuss why in the following paragraph.
+
+In our past leg of study which focussed on the \rfo{} case, we observed that the lift signal behaves less sinusoidal with the advent of streamwise vortex and streamwise vortex-induced vibration (SVIV). In fact, following EEMD, we identified two components of that decomposition (also known as intrinsic mode functions or IMF) with the highest RMS amplitude, and computed their Hilbert spectrograms. What results is the discovery that these two IMFs--two with the largest RMS amplitudes--oscillate at a mean frequency close to the shedding frequency of Karman vortex (or simply the Karman frequency) while the other, oscillates close to the natural frequency of the system. Our choice of using EEMD to compute the Hilbert spectrogram allows us to gain a better understanding not only of the pricipal constituents of lift signal frequency, but also its temporal evolution and more generally, the degree of dispersion of the instantaneous frequencies from the mean. 
+
+We identified the cause of this as the result of both the Karman and streamwise vortices leaving their temporal evolution footprint on the lift signal. The difference in the base frequency and amplitude between the two warps the lift signal away from its previous form in the Karman vortex-induced vibration (KVIV) regime, which is closer to a sine wave. The lift signal in the SVIV regime is exhibits a highly composite form, where one wave is superpositioned on another. In the \rfo{} case, this composite form of the lift signal starts to be apparent when \ured{}\es{}\urse{}.
+
+However, we managed to recover components of the lift signal that are truer to the sinusoidal form previously observed in the KVIV regime once we decompose the lift signal into components called intrinsic mode functions \parencite{Huang1998} and \parencite{Wu2008}. Computing the Hilbert spectrogram of the two dominant components of the lift signal shows that one has a mean instantaneous frequency close to the system natural frequency, while the other has a mean instantaneous frequency close to the shedding frequency of Karman vortex from a static, isolated, smooth circular cylinder.
+
+In this composite lift regime of SVIV, we observed that the contribution from the two components to the total lift is approximately the same between \ured{}\es{}\urei{} to \urte{}. However, when \ured{}\es{}\urel{} to \urtt{}, the contribution to the total lift root-mean-square amplitude from the component whose frequency is close to the Karman frequency is consistently about 2 times bigger than the contribution from the component whose frequency is close to the natural frequency of the system.
+
+\newpage
+
+\section{Chapters completed and progress to date}
+
+\newpage
+
+\section{Factors impeding the progress of research}
+
+\printbibliography
+
+\end{document}
