@@ -64,7 +64,10 @@
 
 \newcommand{\es}{$=$}
 \newcommand{\flrms}{$F_{\text{L,RMS}}$} %root-mean-square of the lift force
-
+\newcommand{\cflyt}{$C_{F_{L},y(t)}$} %IMF component of lift that is most similar to the displacement signal in terms of temporal evolution of amplitude and frequency, differing only perhaps in phase OR the component of lift with the highest correlation to the displacement signal
+\newcommand{\cflm}{$C_{F_{L},\text{max}}$} %IMF component of lift that has maximum RMS amplitude in the IMF set
+\newcommand{\fn}{$f_{n}$} %system natural frequency
+\newcommand{\afl}{$\alpha_{F_{L}}$} %ratio between two dominant IMF components of the lift
 \section{Title of thesis}
 Micro-watt energy harvesting by exploiting the flow around a circular cylinder-strip plate cruciform
 
@@ -140,7 +143,25 @@ These discussions point to the possibility of using the tilt of the plate as a v
 
 \subsection{Dominant components of the lift signal}\label{dominantComponents}
 
-When we compare the amplitude response for \ptlt{} \es{} \rtw{} and \rth{}, it is clear that the magnitude for \yrms{} when \ured{} $>$ \urfi{} are very similar. This observation seems to be at odds with the \flrms{} evolution shown in Fig. \ref{fig:liftevo}, or its enlarged version in Fig. \ref{fig:liftcomp}. This is because while \flrms{} when \ptlt{} \es{} \rth{} is unambiguously bigger than the \flrms{} when \ptlt{} \es{} \rtw{} (in the region \urfi{} $\leq U^{*} \leq$ \urtt{}), the magnitude of \yrms{} are very similar to each other.
+When we compare the amplitude response for \ptlt{} \es{} \rtw{} and \rth{}, it is clear that the magnitude for \yrms{} when \ured{} $>$ \urfi{} are very similar. This observation seems to be at odds with the \flrms{} evolution shown in Fig. \ref{fig:liftevo}, or its enlarged version in Fig. \ref{fig:liftcomp}. This is because while \flrms{} when \ptlt{} \es{} \rth{} is unambiguously bigger than the \flrms{} when \ptlt{} \es{} \rtw{} (in the region \urfi{} $\leq U^{*} \leq$ \urtt{}), the magnitude of \yrms{} are very similar to each other. Why is this the case?
+
+To answer this question, we decomposed the lift signal using EEMD producing a number of IMFs for each lift signal processed. Then, we look for the IMF component with the highest correlation to the displacement signal at the same \ptlt{} and \ured{}. Looking for the IMF component with the highest correlation to the displacement signal $y(t)$ results in singling out the component of lift that is most similar to the $y(t)$ in terms of temporal evolution of amplitude and frequency, differing only in phase. What we found out in our previous investigation of the \ptlt{} \es{} \rfo{} case reveals that this component of lift, which is most similar to $y(t)$ in terms of amplitude and frequency distribution may not be the component with the largest RMS amplitude among the other IMFs from the same IMF set.
+
+For the case of \ptlt{} \es{} \rfo{}, another IMF component of RMS amplitude comparable to, or larger than, the component most similar to the displacement signal (hereafter designated as \cflyt{}) appears in the IMF set once \ured{} reaches the onset of SVIV. This new component, although its RMS amplitude is similar to, or larger than \cflyt{}, its mean instantaneous frequency is not. Its mean instantaneous frequency is generally fairly close to the frequency of Karman vortex shedding from a smooth, isolated circular cylinder. Indeed this is the case for tilt angles \ptlt{} \es{} \rze{}, \ron{}, \rth{}, and \rfo{}. The only case where the IMF component with the largest RMS amplitude has a mean frequency that does not follow the Karman frequency pattern is the case of \ptlt{} \es{} \rtw{}. Instead, the IMF component with the largest RMS amplitude (hereafter denoted as \cflm{}) keeps its mean instantaneous frequency close to \unit{16}{\hertz}, throughout for all \ured{} studied.  
+
+Once we are aware of the existence of two dominant components of the lift signal at certain velocities, we can understand why the amplitude response of \ptlt{} \es{} \rtw{} and \rth{} are similar above \ured{} \es{} \urfi{}, even though \flrms{} at these same velocities are markedly larger for the case of \rth{}. If we look at Fig. \ref{fig:liftcomp}, we can easily see that although the RMS amplitude of the total lift is larger for the case of \ptlt{} \es{} \rth{} compare to \ptlt{} \es{} \rtw{}, the actual component of lift that is close to the natural frequency of the system is only approximately 20\% of the total RMS amplitude of lift, as summarised in Fig. \ref{fig:liftcomprat}. Furthermore, in terms of magnitude, the RMS amplitude of \cflyt{} is only as large as the \cflyt{} at \ptlt{} \es{} \rtw{}. So it is not surprising when the \yrms{} of both \ptlt{} \es{} \rtw{} and \rth{} in the range \urfi{} $< U^{*} <$ \urtt{} are of similar magnitude.
+
+The discrepancy between the magnitude of \flrms{} for \ptlt{} \es{} \rth{} and \rfo{} can also be explained in a similar fashion: although the magnitudes for \flrms{} are similar at \ptlt{} \es{} \rth{} and \rfo{} (see Fig. \ref{fig:liftevo}), the RMS amplitude of \cflyt{} is higher when \ptlt{} \es{} \rfo{}, compared to when \ptlt{} \es{} \rth{}. This therefore producing a higher value of \yrms{} for the cylinder displacement.
+
+As we have demonstrated earlier, sometimes understanding Figs. \ref{fig:ampresp} and \ref{fig:liftevo} requires the aid of Fig. \ref{fig:liftcomprat}. Therefore we have summarised the evolution of \afl{} against \ured{} for all \ptlt{} studied. As previously mentioned, the quantity \afl{} in Fig. \ref{fig:liftcomprat} is computed by selecting the component of IMF with the highest correlation to the displacement signal. Whenever the component with the highest correlation to the displacement signal \cflyt{} also happens to be the component with the highest RMS amplitude, it is given a value of $1$, denoting 100\%. However, when \cflyt{} is not simultaneously the component with the highest RMS amplitude \cflm{}, we determine which of the other IMF components--with a lower correlation to the displacement signal--is the \cflm{} for the given \ured{} and \ptlt{}. Then, we compute the ratio \afl{} as follows.
+
+\begin{equation}
+  \alpha_{F_{L}}=\frac{C_{F_{L},y(t)}}{C_{F_{L},y(t)} + C_{F_{L},\text{max}}}
+  \label{eq:alphafl}
+\end{equation}
+
+We would like to make it clear however, that Eq. \ref{eq:alphafl} is not aimed to quantify the RMS amplitude of the component of lift driving the cylinder vibration as a fraction of the total RMS amplitude of lift, but rather as an index to compare the contribution to \flrms{} by the principal components of lift. In doing so, it will be easier to estimate the percentage of harnessable power lost to the most energetic flow structures, whose cycle of formation and decay fail to lock into the natural frequency of the system \fn{}.
+
 \newpage
 
 \section{Chapters completed and progress to date}
